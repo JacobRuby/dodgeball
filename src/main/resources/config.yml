@@ -1,0 +1,78 @@
+
+minimumPlayers: 1
+
+lobby:
+  world: "dodgeball"
+  spawn: "-1.0 86 24.0"
+  boundingBox:
+    a: "-12 83 8"
+    b: "10 93 40"
+  npc:
+    name: "Jedidiah"
+    location: "3.5 86 33.5 0 150"
+    entityType: "player"
+    skin:
+      signature: "A+2VKSlYYovC5C1WsA6dYMAUyEb25T2mSVEh01oDTxQDLfI98iKNWPzl5x8r+z0tMWp0P6Z6JK+zo60L/odLlizeHzybQsG4meeC+QJvmhMkmnYYbjOQFl3CVK1t3Ex+upmcZWRTnRQxUCIdp0lY3WfzlDKO3kzjBK8iVxqd59dnSZtlkWj9LXhxfOf6i2lD/MW+ndH2VoxJi37evbjE1cxDioWzVyMJe9bLMOEsXXxBIibEc8M8hkH9EfurIkey0WAjohu6jm5bhvy8B+zuMJK5wOfyOWEZsTUciJujVDXL098X9gPkSHtglFG+isEuRMka5IZPc5och4Nkf7MUgCu/ce+6E0eAydD7tsU3IcjFFU4EkdjoI6EsU8Q4ZnmWAcZEaKIgGmkkg5C6uAQF4+3JIX0T/uUHdr0iZzb1fXw5WRhmZ4AQ9vuC4xhf6MqrQoTBTvi4hTLMePnvdbQK7xaBvngFvO2WqGXRjr9VQnV+XgqZSivLiWCw3WH4rFaeK9R02KjJmZjtWubQtt6nwRnPBK93SeIwgH7Zj49OKZjDTdNHW6uiLId8Fh9oDW4qG31lbSHh0W1MSJoY4c5zqNT+FAvANJuM1VO2jE/ADtFPrubHrfLE1dCP/0faCSrYMtwncqb7JHJPIuivi/QnYapbgC/3li2FFBG93gCpwdQ="
+      value: "ewogICJ0aW1lc3RhbXAiIDogMTY3NDE5NTQxMTc1MywKICAicHJvZmlsZUlkIiA6ICJjYjIzZWZhOWY1N2U0ZTQyOGE0MDU2OTM4NDlhODAxZiIsCiAgInByb2ZpbGVOYW1lIiA6ICJWMUdHTyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS82MGZkNzMyZGViMWM3YzBlNzg4YzJiN2EzOThjZWFjMGJjY2NiZTEwMDA1M2JhNWNiYzk3ZDA0MDhiZDgxOWU0IgogICAgfQogIH0KfQ=="
+
+arena:
+  schematic: "schematics/Dodgeball_Lobby.schem"
+  world: "dodgeball"
+  location: "0 65 0"
+  spectatorSpawn: "-7 86 24 -90 0"
+  boundingBox:
+    a: "-17 60 2"
+    b: "15 84 46"
+  red:
+    spawns:
+      - "-11.5 65 40.5 180 0"
+      -  "-9.5 65 40.5 180 0"
+      -  "-7.5 65 40.5 180 0"
+      -  "-5.5 65 40.5 180 0"
+      -  "-3.5 65 40.5 180 0"
+      -   "0.5 65 40.5 180 0"
+      -   "2.5 65 40.5 180 0"
+      -   "4.5 65 40.5 180 0"
+      -   "6.5 65 40.5 180 0"
+      -   "8.5 65 40.5 180 0"
+    boundingBox:
+      a: "-15 60 44"
+      b: "13 81 24"
+    itemRespawn:
+      "-1 65 30"
+  blue:
+    spawns:
+      - "-11.5 65 7.5"
+      -  "-9.5 65 7.5"
+      -  "-7.5 65 7.5"
+      -  "-5.5 65 7.5"
+      -  "-3.5 65 7.5"
+      -   "0.5 65 7.5"
+      -   "2.5 65 7.5"
+      -   "4.5 65 7.5"
+      -   "6.5 65 7.5"
+      -   "8.5 65 7.5"
+    boundingBox:
+      a: "-15 60 4"
+      b: "13 81 24"
+    itemRespawn:
+      "-1 65 18"
+  ballSpawns:
+    - "-13 65 24"
+    - "-10 65 24"
+    - "-7 65 24"
+    - "-4 65 24"
+    - "-1 65 24"
+    - "2 65 24"
+    - "5 65 24"
+    - "8 65 24"
+    - "11 65 24"
+  extraBallSpawnDelay: 120
+
+commands:
+  victory:
+    - "give %player% minecraft:diamond"
+  lost:
+    - "give %player% minecraft:coal"
+
+

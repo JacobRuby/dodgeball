@@ -1,0 +1,11 @@
+name: DodgeBall
+version: 0.1
+main: dev.jacobruby.DodgeBallPlugin
+description: Adds the DodgeBall minigame to your server!
+author: JacobRuby
+api-version: '1.20'
+load: POSTWORLD
+depend:
+  - WorldEdit
+  - ProtocolLib
+  - Multiverse-Core
