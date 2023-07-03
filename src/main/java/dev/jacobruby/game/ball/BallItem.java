@@ -26,8 +26,6 @@ public class BallItem extends ItemEntity {
 
     private int spawnedSlot = -1;
 
-    private Team lastLocationTeam;
-
     public BallItem(BallType type, Location location) {
         super(((CraftWorld) location.getWorld()).getHandle(), location.x(), location.y(), location.z(), CraftItemStack.asNMSCopy(type.getItemStack()), 0, 0.5f, 0);
         this.type = type;
@@ -102,21 +100,27 @@ public class BallItem extends ItemEntity {
             return;
         }
 
-        for (Team team : game.getTeams()) {
-            if (team.getBoundingBox().contains(vector)) {
-                this.lastLocationTeam = team;
-                System.out.println("Found team: " + (team == null ? "null" : team.getId()));
-                break;
-            }
-        }
-
         BoundingBox arenaBoundingBox = game.getBoundingBox();
 
         if (!arenaBoundingBox.contains(vector)) {
-            System.out.println("team: " + this.lastLocationTeam);
-            if (this.lastLocationTeam != null) {
-                Location loc = this.lastLocationTeam.getItemRespawnLocation();
-                System.out.println("teamLoc: " + loc);
+            Location location = this.getBukkitEntity().getLocation();
+            Team closest = null;
+            double distance = Double.MAX_VALUE;
+            for (Team team : game.getTeams()) {
+                if (closest == null) {
+                    closest = team;
+                    continue;
+                }
+
+                double newDist = team.getItemRespawnLocation().distanceSquared(location);
+                if (newDist < distance) {
+                    closest = team;
+                    distance = newDist;
+                }
+            }
+
+            if (closest != null) {
+                Location loc = closest.getItemRespawnLocation();
                 this.setPos(loc.x(), loc.y(), loc.z());
             } else {
                 discard();
