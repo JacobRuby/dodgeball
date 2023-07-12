@@ -6,6 +6,7 @@ import dev.jacobruby.game.ball.BallType;
 import dev.jacobruby.game.ball.monster.MonsterEntity;
 import dev.jacobruby.game.team.Team;
 import dev.jacobruby.player.DBPlayer;
+import dev.jacobruby.util.BlockModFunction;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.minecraft.server.MinecraftServer;
@@ -29,6 +30,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class InGameListener implements Listener {
@@ -81,6 +84,8 @@ public class InGameListener implements Listener {
             player.sendMessage(Component.text("Congratulations, you discovered the super easter egg and WIN THE GAME!").color(NamedTextColor.AQUA));
             Bukkit.getScheduler().runTaskLater(DodgeBallPlugin.get(), () -> {
                 player.sendMessage(Component.text("Just kidding, but have a hut!").color(NamedTextColor.RED));
+
+                spawnHut(player.getLocation().getBlock());
             }, 20 * 3);
         }
 
@@ -97,6 +102,30 @@ public class InGameListener implements Listener {
 
         type.launchProjectile(dbPlayer);
         player.getInventory().setItemInMainHand(null);
+    }
+
+    private void spawnHut(Block block) {
+        List<Block> blocks = new ArrayList<>();
+        for (int x = -2; x < 3; x++) {
+            for (int y = -1; y < 4; y++) {
+                for (int z = -2; z < 3; z++) {
+                    blocks.add(block.getRelative(x, y, z));
+                }
+            }
+        }
+
+        for (int x = -1; x < 2; x++) {
+            for (int y = 0; y < 3; y++) {
+                for (int z = -1; z < 2; z++) {
+                    blocks.remove(block.getRelative(x, y, z));
+                }
+            }
+        }
+
+        blocks.remove(block.getRelative(-2, 0, 0));
+        blocks.remove(block.getRelative(-2, 1, 0));
+
+        blocks.forEach(new BlockModFunction(Material.SNOW_BLOCK));
     }
 
     @EventHandler

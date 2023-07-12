@@ -39,7 +39,8 @@ public class DodgeBallPlugin extends JavaPlugin implements Listener {
     @Nullable
     private DodgeBallGame game;
 
-    public DodgeBallPlugin() {
+    @Override
+    public void onLoad() {
         INSTANCE = this;
 
         this.configManager = new ConfigManager(this);

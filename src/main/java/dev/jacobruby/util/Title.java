@@ -1,5 +1,6 @@
 package dev.jacobruby.util;
 
+import io.papermc.paper.util.Tick;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,9 +19,9 @@ public class Title {
 
     public static void send(Player player, Component title, Component subtitle, int fadeIn, int stay, int fadeOut) {
         player.showTitle(net.kyori.adventure.title.Title.title(title, subtitle, net.kyori.adventure.title.Title.Times.times(
-            Duration.ofMillis(fadeIn * 50L), // WHY ARE THESE IN JAVA DURATIONS, PAPER?
-            Duration.ofMillis(stay * 50L),
-            Duration.ofMillis(fadeOut * 50L)
+            Tick.of(fadeIn), // WHY ARE THESE IN JAVA DURATIONS, PAPER?
+            Tick.of(stay),
+            Tick.of(fadeOut)
         )));
     }
 }

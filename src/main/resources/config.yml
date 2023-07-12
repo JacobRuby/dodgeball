@@ -67,7 +67,7 @@ arena:
     - "5 65 24"
     - "8 65 24"
     - "11 65 24"
-  extraBallSpawnDelay: 120
+  extraBallSpawnDelay: 20
 
 commands:
   victory:
